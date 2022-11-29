@@ -17,5 +17,5 @@ Consta de un backend desarrollado con django y django restframework, y el fronte
 # NOTA:
 - El trabajo lo realice solo.
 
-## desarrollador
+## Desarrollador
 Luis Charca Mamani
