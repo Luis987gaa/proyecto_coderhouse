@@ -13,6 +13,7 @@ Consta de un backend desarrollado con django y django restframework, y el fronte
 ### frontend.
 - pip install -r requirements.txt
 - python main.py
+- CRUD completo de pubicaciones
 
 # NOTA:
 - El trabajo lo realice solo.
