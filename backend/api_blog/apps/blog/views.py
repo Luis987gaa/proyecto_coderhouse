@@ -36,7 +36,7 @@ class PostUserListAPIView(generics.ListAPIView):
 class PostCreateAPIView(generics.CreateAPIView):
     """ Clase para la creacion de publicaciones solo para administradores y usuarios logeados. """
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated)
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         model = self.serializer_class().Meta.model
@@ -46,7 +46,7 @@ class PostCreateAPIView(generics.CreateAPIView):
 class PostsUpdateAPIView(generics.UpdateAPIView):
     """ Clase para la modificacion de publicaciones solo para administradores y usuarios logeados. """
     serializer_class = PostSerializer
-    permission_classes = (IsAuthenticated)
+    permission_classes = (IsAuthenticated,)
 
     def get_queryset(self):
         model = self.get_serializer().Meta.model
@@ -78,6 +78,6 @@ class PostsUpdateAPIView(generics.UpdateAPIView):
 
 
 class PostDeleteAPIView(generics.DestroyAPIView):
-    permission_classes = (IsAuthenticated)
+    permission_classes = (IsAuthenticated,)
     queryset = Post.objects.all()
     serializer_class = PostSerializer
