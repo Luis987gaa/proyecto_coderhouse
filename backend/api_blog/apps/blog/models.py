@@ -29,11 +29,9 @@ class Post(models.Model):
         auto_now_add=True
     )
 
-    image_post = models.ImageField(
-        verbose_name='Imagen',
-        blank=True,
-        null=True
-    )
+    image_post = models.CharField(
+        verbose_name='Url imagen',
+        max_length=300)
 
     class Meta:
         verbose_name = 'Post'

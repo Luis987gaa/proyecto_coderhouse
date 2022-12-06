@@ -15,6 +15,7 @@ class PostSerializer(serializers.ModelSerializer):
             'sub_titulo': instance.sub_titulo,
             'contenido': instance.contenido,
             'autor': instance.autor.name,
+            'autor_id': instance.autor.id,
             'fecha_creacion': instance.fecha_creacion,
-            'image_post': instance.image_post if instance.image_post != '' else '',
+            'image_post': instance.image_post
         }

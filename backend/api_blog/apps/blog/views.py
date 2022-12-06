@@ -38,17 +38,9 @@ class PostCreateAPIView(generics.CreateAPIView):
     serializer_class = PostSerializer
     permission_classes = (IsAuthenticated, IsAdminUser)
 
-    def post(self, request, *args, **kwargs):
-        serializer = self.serializer_class(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response({
-                'message': 'Post registrado',
-            }, status=status.HTTP_201_CREATED)
-        return Response({
-            'message': 'Oh! pasó algo.',
-            'error': serializer.errors
-        }, status=status.HTTP_400_BAD_REQUEST)
+    def get_queryset(self):
+        model = self.serializer_class().Meta.model
+        return model.objects.all()
 
 
 class PostsUpdateAPIView(generics.UpdateAPIView):
@@ -65,18 +57,15 @@ class PostsUpdateAPIView(generics.UpdateAPIView):
             serializer = self.serializer_class(instance=self.get_queryset(), data=request.data)
             if serializer.is_valid():
                 serializer.save()
-                return Response({
-                    "message": "Post actualizado"
-                })
+                return Response(
+                    serializer.data
+                )
             else:
-                return Response({
-                    "message": "No se pudo actualizar",
-                    "error": serializer.errors
-                })
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         else:
             return Response({
                 "message": "El post no existe o se ha eliminado."
-            })
+            }, status = status.HTTP_400_BAD_REQUEST)
 
     def patch(self, request, *args, **kwargs):
         if self.get_queryset():

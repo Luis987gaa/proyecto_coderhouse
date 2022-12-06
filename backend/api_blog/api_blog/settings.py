@@ -50,6 +50,9 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': ('knox.auth.TokenAuthentication',),
 }
 
+REST_KNOX = {
+    'TOKEN_LIMIT_PER_USER': 2,
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
